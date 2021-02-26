@@ -172,8 +172,8 @@ export class Mailer {
     if (process.env.SMTP_HOST) {
       let smtpConfig = {
         host: process.env.SMTP_HOST,
-        port: process.env.SMTP_PORT,
-        secure: process.env.NODE_ENV === "production",
+        port: parseInt(process.env.SMTP_PORT),
+        secure: typeof process.env.SMTP_PORT === 'undefined' ? process.env.NODE_ENV === "production" : (process.env.SMTP_PORT === 'true'),
         auth: undefined,
       };
 
